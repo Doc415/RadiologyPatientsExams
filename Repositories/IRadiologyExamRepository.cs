@@ -4,7 +4,7 @@ namespace RadiologyPatientsExams.Repositories;
 
 public interface IRadiologyExamRepository
 {
-    Task<IEnumerable<Exam>> GetAllExams();
+    Task<List<Exam>> GetAllExams();
     Task<Exam> GetExamById(int id);
     void DeleteExam(int id);
     void InsertExam(Exam exam);

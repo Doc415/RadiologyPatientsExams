@@ -12,7 +12,7 @@ namespace RadiologyPatientsExams.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Exam>> GetAllExams()
+        public async Task<List<Exam>> GetAllExams()
         {
             return await _context.Exams.Where(x=> x.NotDeleted==true).ToListAsync();
         }
@@ -20,13 +20,13 @@ namespace RadiologyPatientsExams.Repositories
         public async Task<Exam> GetExamById(int id)
         {
             var exam=await _context.Exams.FirstOrDefaultAsync(x => x.Id == id && x.NotDeleted==true);
-            return exam;
+            return exam!;
         }
 
         public async void DeleteExam(int id)
         {
             var exam = await _context.Exams.FirstOrDefaultAsync(x => x.Id == id && x.NotDeleted==true);
-            exam.NotDeleted = false;
+            exam!.NotDeleted = false;
 
             _context.Exams.Entry(exam).State=EntityState.Modified;
             _context.SaveChanges();
@@ -34,14 +34,14 @@ namespace RadiologyPatientsExams.Repositories
 
         public async void InsertExam(Exam exam)
         {
-            _context.AddAsync(exam);
+            await _context.AddAsync(exam);
             _context.SaveChanges();
         }
 
         public async void UpdateExam(int id,Exam exam)
         {
             var toUpdate = await _context.Exams.FirstOrDefaultAsync(x => x.Id == id && x.NotDeleted == true);
-            toUpdate.Doctor = exam.Doctor;
+            toUpdate!.Doctor = exam.Doctor;
             toUpdate.NotDeleted = true;
             toUpdate.RefPatientId = exam.RefPatientId;
             toUpdate.Date = exam.Date;

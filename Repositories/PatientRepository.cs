@@ -21,7 +21,7 @@ public class PatientRepository : IRadiologyPatientRepository
     public async Task<Patient> GetPatientById(int id)
     {
         var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == id && x.NotDeleted == true);
-        return patient;
+        return patient!;
     }
 
     public async void DeletePatient(int id)
