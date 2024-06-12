@@ -1,34 +1,29 @@
 ﻿using RadiologyPatientsExams.Validations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RadiologyPatientsExams.Models;
 
-public class Exam
+public class ExamViewModel
 {
-    public int Id { get; set; }
-    [Required]
-    [ForeignKey("Patient")]
-    public int RefPatientId { get; set; }
-    public Patient Patient { get; set; }
 
-    [Required]
+    public int Id { get; set; }
+
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
     [BirthDateValidation(ErrorMessage = "Examination date can not be in the future.")]
-    public DateTime Date { get; set; } = DateTime.Now.Date;
+    public string Date { get; set; }
 
-    [Required]
-    public string Type { get; set; }
+    public string Modality { get; set; }
+    [Display(Name = "Patient Name")]
+    public string PatientName { get; set; }
+    [Display(Name = "Patient Surname")]
+    public string PatientSurname { get; set; }
 
-    [Required]
-    public string Diagnosis { get; set; }
-
-    [Required]
     public string Doctor { get; set; }
 
     public string? Comments { get; set; }
 
-    public bool NotDeleted { get; set; } = true;
-}
+    public string Diagnosis { get; set; }
 
+    public int RefPatientId { get; set; }
+}

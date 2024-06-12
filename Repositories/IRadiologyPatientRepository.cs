@@ -4,10 +4,10 @@ namespace RadiologyPatientsExams.Repositories
 {
     public interface IRadiologyPatientRepository
     {
-        Task<List<Patient>> GetAllPatients();
+        Task<List<Patient>> GetAllPatients(string name, string surname);
         Task<Patient> GetPatientById(int id);
-        void DeletePatient(int id);
-        void InsertPatient(Patient patient);
-        void UpdatePatient(int id,Patient patient);
+        Task DeletePatient(int id);
+        Task InsertPatient(Patient patient);
+        Task UpdatePatient(int id, Patient patient);
     }
 }

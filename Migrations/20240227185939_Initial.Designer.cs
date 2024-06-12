@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RadiologyPatientsExams.Data;
 
@@ -11,9 +12,11 @@ using RadiologyPatientsExams.Data;
 namespace RadiologyPatientsExams.Migrations
 {
     [DbContext(typeof(RadiologyDb))]
-    partial class RadiologyDbModelSnapshot : ModelSnapshot
+    [Migration("20240227185939_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
